@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hrms_appModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="AppData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpCode" Type="Int32" Nullable="false" />
+    <Property Name="AppKey" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Registered" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Version" Type="Double" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empCred">
+    <Key>
+      <PropertyRef Name="EmpCode" />
+    </Key>
+    <Property Name="EmpCode" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Algo" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" />
+    <Property Name="isactive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="loginattempts" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginCred">
+    <Key>
+      <PropertyRef Name="EmpCode" />
+    </Key>
+    <Property Name="EmpCode" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Salt" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Algo" Type="Int32" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" />
+    <Property Name="isactive" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="loginattempts" Type="Byte" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="EmpCode" />
+    </Key>
+    <Property Name="EmpCode" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Grade" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Cell" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Verifier" Type="Int32" />
+    <Property Name="Approver" Type="Int32" />
+    <Property Name="AreaManager" Type="Int32" />
+    <Property Name="RegionalManager" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="CreatedOn" Type="DateTime" Nullable="false" />
+    <Property Name="ModifiedOn" Type="DateTime" Nullable="false" />
+    <Property Name="isenabled" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="Region" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="OffList" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
+    <Property Name="Branch" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="BO1" Type="Int32" />
+    <Property Name="BO2" Type="Int32" />
+    <Property Name="BO3" Type="Int32" />
+    <Property Name="ExtensionNum" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="RegistrationKey">
+    <Key>
+      <PropertyRef Name="userid" />
+      <PropertyRef Name="RegistrationKey1" />
+    </Key>
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegistrationKey1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedAt" Type="DateTime" />
+    <Property Name="status" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="hrms_appEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="AppDatas" EntityType="Self.AppData" />
+    <EntitySet Name="empCreds" EntityType="Self.empCred" />
+    <EntitySet Name="LoginCreds" EntityType="Self.LoginCred" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="RegistrationKeys" EntityType="Self.RegistrationKey" />
+  </EntityContainer>
+</Schema>

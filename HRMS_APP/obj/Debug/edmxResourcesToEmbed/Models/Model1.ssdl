@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="hrms_appModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AppData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpCode" Type="int" Nullable="false" />
+    <Property Name="AppKey" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="Registered" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Version" Type="float" Nullable="false" />
+    <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+  </EntityType>
+  <EntityType Name="empCreds">
+    <Key>
+      <PropertyRef Name="EmpCode" />
+    </Key>
+    <Property Name="EmpCode" Type="int" Nullable="false" />
+    <Property Name="Password" Type="varchar(max)" Nullable="false" />
+    <Property Name="Salt" Type="varchar(max)" />
+    <Property Name="Algo" Type="int" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="isactive" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loginattempts" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoginCreds">
+    <Key>
+      <PropertyRef Name="EmpCode" />
+    </Key>
+    <Property Name="EmpCode" Type="int" Nullable="false" />
+    <Property Name="Password" Type="varchar(max)" Nullable="false" />
+    <Property Name="Salt" Type="varchar(max)" />
+    <Property Name="Algo" Type="int" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="isactive" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="loginattempts" Type="tinyint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="EmpCode" />
+    </Key>
+    <Property Name="EmpCode" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="Designation" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Grade" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="Cell" Type="varchar" MaxLength="15" Nullable="false" />
+    <Property Name="Verifier" Type="int" />
+    <Property Name="Approver" Type="int" />
+    <Property Name="AreaManager" Type="int" />
+    <Property Name="RegionalManager" Type="int" />
+    <Property Name="Status" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="ModifiedOn" Type="datetime2" Precision="7" Nullable="false" />
+    <Property Name="isenabled" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="Region" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="OffList" Type="varchar" MaxLength="13" />
+    <Property Name="Branch" Type="varchar" MaxLength="30" />
+    <Property Name="BO1" Type="int" />
+    <Property Name="BO2" Type="int" />
+    <Property Name="BO3" Type="int" />
+    <Property Name="ExtensionNum" Type="varchar" MaxLength="4" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'hrms_app.ecohrms.RegistrationKeys' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="RegistrationKeys">
+    <Key>
+      <PropertyRef Name="userid" />
+      <PropertyRef Name="RegistrationKey" />
+    </Key>
+    <Property Name="userid" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegistrationKey" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="CreatedAt" Type="datetime" />
+    <Property Name="status" Type="nchar" MaxLength="10" />
+    <Property Name="password" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'hrms_app.ecohrms.userdata' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="userdata">
+          <Property Name="userid" Type="nvarchar" MaxLength="50" />
+          <Property Name="email" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="varchar" MaxLength="255" />
+          <Property Name="city" Type="nchar" MaxLength="10" />
+          <Property Name="status" Type="nchar" MaxLength="10" />
+        </EntityType>-->
+  <EntityContainer Name="hrms_appModelStoreContainer">
+    <EntitySet Name="AppData" EntityType="Self.AppData" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="empCreds" EntityType="Self.empCreds" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LoginCreds" EntityType="Self.LoginCreds" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegistrationKeys" EntityType="Self.RegistrationKeys" store:Type="Tables" store:Schema="ecohrms">
+      <DefiningQuery>SELECT 
+    [RegistrationKeys].[userid] AS [userid], 
+    [RegistrationKeys].[RegistrationKey] AS [RegistrationKey], 
+    [RegistrationKeys].[CreatedAt] AS [CreatedAt], 
+    [RegistrationKeys].[status] AS [status], 
+    [RegistrationKeys].[password] AS [password]
+    FROM [ecohrms].[RegistrationKeys] AS [RegistrationKeys]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>
